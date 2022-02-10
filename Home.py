@@ -1,6 +1,6 @@
 import os
 
-from Funtions import Titulo, ReadJson, RegistrarCliente, CalcularDia, VisualizarClientes
+from Funtions import Titulo, ReadJson, RegistrarCliente, CalcularDia, VisualizarClientes, Actualizar, Eliminar
 
 docCalendario="Calendario.json"
 lecturaCalendario= ReadJson(docCalendario)
@@ -23,9 +23,7 @@ while(seguir):
     print("3- Actualizar informacion")
     print("4- Eliminar informacion")
     print("5- Calcular Dia")
-    print("6- Escoger empleados por sucursal")
-    print("7- Visualizar empleados de la sucursal escogida")
-    print("8- Salir")
+    print("6- Salir")
     print("")
 
     try:
@@ -35,11 +33,17 @@ while(seguir):
             RegistrarCliente(docClientes, clientes)
         elif(o==2):
             VisualizarClientes(clientes)
-            
+
+        elif(o==3):
+            Actualizar(docClientes, clientes)
+
+        elif(o==4):
+            Eliminar(docClientes, clientes)    
+
         elif(o==5):
             CalcularDia(docClientes, calendario, clientes)
 
-        elif(o==8): #Salir
+        elif(o==6): #Salir
             Titulo("Gracias por usar nuestros servicios")
             input()
             seguir=False

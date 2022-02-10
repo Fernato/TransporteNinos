@@ -38,25 +38,6 @@ def LeerArchivoJson(nombreDocumento):
 
 ##########################################
 
-#######  Visualizar Empleados ############
-
-def BuscarMes(diccionario,documento):
-    
-    lista=diccionario.get(documento)
-    print(f"Mes: ",lista[0])
-    print(f"Dias: {lista[1]}")
-    print("")
-
-def VisualizarMes(nombreDocumento,diccionario):
-    Titulo("Informacion de Mes")
-    LecturaJson= ReadJson(nombreDocumento)
-    diccionario=LecturaJson
-    for i in diccionario:
-        #lista=[] 
-        BuscarMes(diccionario,i)
-    input("Presione enter para salir ") 
-
-##########################################
 
 #######  Conteo ######################
 
@@ -78,10 +59,12 @@ def SumaDia(nombreDia):
 def Contar(calendario):
     datosCalculados = {}
     semana = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo"]
-    
+    dia=0
     diasTrabajar = int(input("Cuantos dias vas a trabajar: "))
     nunMes = input("Numero de mes: ")
-    
+    mesIngres = calendario[nunMes]
+    nombreMesIngreso = mesIngres['mes']
+
     count = 0
     diaInicial=""
     if(nunMes in calendario):
@@ -125,6 +108,8 @@ def Contar(calendario):
                 
         input(f"dia final=   {diaR} - {mes} - {semana[index-1]}")
 
+        datosCalculados["diaIngreso"] = dia
+        datosCalculados["mesIngreso"] = nombreMesIngreso
         datosCalculados["dia"]=diaR
         datosCalculados["mes"]=mes
         datosCalculados["diaSemana"]=semana[index-1]
@@ -153,7 +138,8 @@ def RegistrarCliente(nombreDocumento,diccionario):
         alumno["nombre"]=(input("Nombre: "))
         alumno["direccion"]=(input("Direccion: ")) 
         alumno["pariente"]=(input("Pariente: ")) 
-        alumno["celular"]=(input("Numero de Celular: ")) 
+        alumno["celular"]=(input("Numero de Celular: "))
+        alumno["calculado"] = False
         diccionario[numNino]=alumno
         GenerarJson(nombreDocumento,diccionario)
         
@@ -167,18 +153,35 @@ def RegistrarCliente(nombreDocumento,diccionario):
 def BuscarCliente(diccionario, id):
 
         alumno = diccionario[id]
+        nombre = alumno['nombre']
+        direccion = alumno['direccion']
+        pariente = alumno['pariente']
+        celular = alumno['celular']
+
+        calculado = alumno["calculado"]
         
-        print(f"Documento: {id}")
-        print(f"Nombre: {alumno['nombre']}")
-        print(f"Direccion: {alumno['direccion']}")
-        print(f"pariente: {alumno['pariente']}")
-        print(f"Celular: {alumno['celular']}")
-        print("")
+        if(calculado):
+            calculado = alumno['datosCalculados']
+            diaIngreso = calculado['diaIngreso']
+            mesIngreso = calculado['mesIngreso']
+            dia = calculado['dia']
+            mes = calculado['mes']
+            diaSemana = calculado['diaSemana']
+            
+            print(f"|     {id}     |  {nombre}  |  {direccion}   |  {pariente}   |  {celular}  |  {diaIngreso}  |  {mesIngreso}  |  {dia}  |  {mes}  |  {diaSemana}  |")
+            
+        else:
+            print(f"|     {id}     |  {nombre}  |  {direccion}   |  {pariente}   |  {celular}  |")
+            
+
 
 
 def VisualizarClientes(diccionario):
     Titulo("Clientes")
-
+    print("_____________________________________________________________________________________________________________________________")
+    print("")
+    print("| Documento |  Nombre  |  Direccion  |  Pariente  |  Celular  |  Dia Ingreso  |  Mes Ingreso  |  Dia  |  Mes  |  Dia Semana  |")
+    print("______________________________________________________________________________________________________________________________")
     for i in diccionario:
         BuscarCliente(diccionario,i)
     input("Presione enter para salir ") 
@@ -195,7 +198,59 @@ def CalcularDia(nombreDocumento, calendario, diccionario):
     datosCalculados={}
     datosCalculados = Contar(calendario)
     alumno["datosCalculados"] = datosCalculados
+    alumno["calculado"] = True
     diccionario[id]=alumno
     GenerarJson(nombreDocumento,diccionario)
+
+
+#################  Actualizar ###################
+
+def Actualizar(nombreDocumento, diccionario):
+    Titulo("Acutalizar Cliente")
+
+    id = input("Ingresa el documento que quieres actualizar")
+    alumno = diccionario[id]
+    print(f"1- Nombre: {alumno['nombre']}")
+    print(f"2- Direccion: {alumno['direccion']}")
+    print(f"3- Pariente: {alumno['pariente']}")
+    print(f"4- Celular: {alumno['celular']}")
+
+    o = int(input("Elija la opcion que quieres corregir: "))
+    
+
+    if(o == 1 ):
+        nombre = input("Digite el nombre a cambiar: ")
+        alumno['nombre'] = nombre
+    elif( o == 2 ):
+        direccion = input("Digite la direccion a cambiar: ")
+        alumno['direccion'] = direccion
+    elif( o == 3):
+        pariente = input("Digite la direccio a cambiar: ")
+        alumno['pariente'] = pariente
+    elif( o == 4 ):
+        celular = input("Digite el celular a cambiar: ")
+        alumno['celular'] = celular
+    
+    diccionario[id] = alumno
+    GenerarJson(nombreDocumento,diccionario)
+
+    
+
+def Eliminar(nombreDocumento, diccionario):
+
+    Titulo("Acutalizar Cliente")
+
+    id = input("Ingresa el documento que quieres eliminar: ")
+    alumno = diccionario[id]
+    print(f"Nombre: {alumno['nombre']}")
+    print(f"Direccion: {alumno['direccion']}")
+    print(f"Pariente: {alumno['pariente']}")
+    print(f"Celular: {alumno['celular']}")
+
+    o = input("¿Estas seguro que quieres eliminar el registro? S/N: ").upper()
+    if(o == "S"):
+        del(diccionario[id])
+        input("Se elimino el registro")
+        GenerarJson(nombreDocumento,diccionario)
 
 

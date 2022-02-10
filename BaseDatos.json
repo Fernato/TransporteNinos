@@ -1,10 +1,13 @@
 {
     "1": {
-        "nombre": "ferney",
+        "nombre": "Ferney",
         "direccion": "Guayabal",
         "pariente": "Dili",
         "celular": "3002534972",
+        "calculado": true,
         "datosCalculados": {
+            "diaIngreso": 2,
+            "mesIngreso": "Febrero",
             "dia": 1,
             "mes": "Marzo",
             "diaSemana": "martes"
