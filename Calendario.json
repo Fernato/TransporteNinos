@@ -1,0 +1,86 @@
+{
+    "1": {
+        "mes": "Enero",
+        "diaUno": "sabado",
+        "numDias": 31,
+        "semanas": 6
+    },
+
+    "2": {
+        "mes": "Febrero",
+        "diaUno": "martes",
+        "numDias": 28,
+        "semanas": 5
+      },
+
+    "3": {
+        "mes":  "Marzo",
+        "diaUno": "martes",
+        "numDias": 31,
+        "semanas": 5
+    },
+
+    "4": {
+        "mes":  "Abril",
+        "diaUno": "viernes",
+        "numDias": 30,
+        "semanas": 5
+    },
+
+    "5": {
+        "mes":  "Mayo",
+        "diaUno": "domingo",
+        "numDias": 31,
+        "semanas": 6
+    },
+
+    "6": {
+        "mes":  "Junio",
+        "diaUno": "miercoles",
+        "numDias": 30,
+        "semanas": 5
+    }, 
+  
+    "7": {
+        "mes":  "Julio",
+        "diaUno": "viernes",
+        "numDias": 31,
+        "semanas": 5
+    },
+
+    "8":{
+        "mes":  "Agosto",
+        "diaUno": "lunes",
+        "numDias": 31,
+        "semanas": 5
+    },
+
+
+    "9": {
+        "mes":  "Septiembre",
+        "diaUno": "jueves",
+        "numDias": 30,
+        "semanas": 5
+    }, 
+
+    "10": {
+        "mes":  "Octubre",
+        "diaUno": "sabado",
+        "numDias": 30,
+        "semanas": 6
+    }, 
+
+    "11": {
+        "mes":  "Noviembre",
+        "diaUno": "martes",
+        "numDias": 30,
+        "semanas": 5
+    },  
+
+    "12": {
+        "mes":  "Diciembre",
+        "diaUno": "jueves",
+        "numDias": 31,
+        "semanas": 5
+    }    
+}

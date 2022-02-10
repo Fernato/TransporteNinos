@@ -1,0 +1,13 @@
+{
+    "1": {
+        "nombre": "ferney",
+        "direccion": "Guayabal",
+        "pariente": "Dili",
+        "celular": "3002534972",
+        "datosCalculados": {
+            "dia": 1,
+            "mes": "Marzo",
+            "diaSemana": "martes"
+        }
+    }
+}
